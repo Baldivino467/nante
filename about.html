@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=devices-width, initial-scale=1.0">
+    <title>Personal Website </title>
+    <link rel="stylesheet" href="about.css">
+    <script src="https://kit.fontawesome.com/42bde6f865.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="header">
+    <div class="container">
+      <nav>
+        <img src="images/logo.png" class="logo">
+        <ul id="sidemenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <i class="fas fa-times" onclick="closemenu()"></i>
+        </ul>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
+      </nav>
+      <div class="header-text">
+      </div>
+    </div>
+  </div>
+  <!-- -----------about----------- -->
+  <div id="about">
+    <div class="container">
+      <div class="row">
+       <div class="about-col-1">
+        <img src="images/user.png">
+       </div>
+       <div class="about-col-2">
+        <h1 class="sub-title">About Me</h1>
+        <p>Hi!  My name is Reynante Baldivino, and I'm a Pinoy
+          designer. I do and I love web, print, motion
+          design and photography. Lastly, I'm employed at Globule Bleu, a leading 
+          communication agency in Wallonia, as a web and motion designer.
+          I have worked for big clients such as IBA, EVS and Prayon but
+          also for smaller ones, with the same passion and the same creativity.
+          I'm always looking for new challenges and new people to meet
+          so don't hesitate to drop me a line !</p>
+           <div class="tab-titles">
+              <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+              <p class="tab-links" onclick="opentab('experience')">Experience</p>
+              <p class="tab-links" onclick="opentab('education')">Education</p>
+           </div>
+          <div class="tab-contents active-tab" id="skills">
+           <ul>
+            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+            <li><span>Web Development</span><br>Web app Development</li>
+            <li><span>App Development</span><br>Building Andriod/iOS apps</li>
+           </ul>
+       </div>
+       <div class="tab-contents" id="experience">
+        <ul>
+         <li><span>2037 - 2045</span><br>UI/UX Design Training at ET Institute</li>
+         <li><span>2034 - 2036</span><br>Team Lead at StarApp LLC.</li>
+         <li><span>2031 - 2033</span><br>UX/UI Design Executive at Coin Digital Ltd.</li>
+         <li><span>2028 - 2030</span><br>Intership at ekart eCommerce.</li>
+        </ul >
+    </div>
+    <div class="tab-contents" id="education">
+      <ul>
+       <li><span>2028</span><br>UI/UX Design Training at ET Institute</li>
+       <li><span>2027</span><br>MMBA from MIT Oxford University</li>
+       <li><span>2026</span><br>BSIT from Bukidnon State University</li>
+      </ul>
+  </div>
+      </div>
+    </div>
+  </div>  
+  
+  <script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+   
+    function opentab(tabname){
+        for(tablink of tablinks){
+          tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+          tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+  </script>
+
+  <script>
+
+    var sidemenu= document.getElementById("sidemenu");
+
+    function openmenu(){
+      sidemenu.style.right = "0";
+    }
+    function closemenu(){
+      sidemenu.style.right = "-200px";
+    }
+
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzVkQR1dgyD8OXDqx3Z-3eF1bmez_2hpUg3hmq0ApIR5RA_5N3uB5yz7OZmW6pgfVlWxw/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML = "Message sent successfully"
+          setTimeout(function(){
+            msg.innerHTML = ""
+          },5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
